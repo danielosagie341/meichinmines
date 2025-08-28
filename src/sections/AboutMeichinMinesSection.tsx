@@ -28,7 +28,7 @@ const AboutMeichinMinesSection: React.FC = () => {
                 About <span className="text-yellow-500">Meichin Mines</span>
               </h2>
               
-              <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-8">
+              <p className="text-lg md:text-xl font-bold text-gray-700 leading-relaxed mb-8">
                 We are an indigenous Nigerian Company registered under the Nigerian law as a 
                 mining, mineral processing and export company
               </p>

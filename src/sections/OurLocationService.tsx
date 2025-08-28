@@ -1,15 +1,18 @@
 import React from 'react';
 import { MapPin, Phone, Mail } from 'lucide-react';
-import locationImage from '../assets/images/locationImage.svg';
+import MapEmbed from '../components/MapEmbed';
 
 const OurLocationSection: React.FC = () => {
+  const officeAddress = "Directorate of Road Traffic Services, Cadastral Zone, B10 Udysens Crescent, Mabushi, Abuja";
+  const officeLat = 9.078967196719745;
+  const officeLng = 7.44781821539683;
   return (
     <section className="py-16 lg:py-24 bg-gray-50">
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-            OUR <span className="text-yellow-500">LOCATIONS</span>
+            OUR <span className="text-yellow-500">LOCATION</span>
           </h2>
           <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
             Find us at our strategic locations across Nigeria, positioned to serve you better
@@ -19,28 +22,7 @@ const OurLocationSection: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Map Image */}
           <div className="order-2 lg:order-1">
-            <div className="relative bg-white rounded-2xl shadow-2xl overflow-hidden">
-              <img 
-                src={locationImage}
-                alt="Our Locations Map"
-                className="w-full h-64 md:h-80 lg:h-96 r"
-              />
-              
-              {/* Map overlay with interactive elements */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="relative w-full h-full">
-                  {/* Location marker - you can position this based on actual coordinates */}
-                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                    <div className="relative">
-                      <div className="w-6 h-6 bg-red-500 rounded-full animate-pulse"></div>
-                      <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded whitespace-nowrap">
-                        XICAB LTD
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <MapEmbed lat={officeLat} lng={officeLng} address={officeAddress} height="450px" />
           </div>
 
           {/* Location Information */}
@@ -128,25 +110,14 @@ const OurLocationSection: React.FC = () => {
               </div> */}
 
               {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4">
+              {/* <div className="flex flex-col sm:flex-row gap-4">
                 <a
                   href="/contact"
                   className="inline-flex items-center justify-center px-6 py-3 bg-yellow-500 hover:bg-yellow-600 text-black font-semibold rounded-lg transition-all duration-300 transform hover:scale-105"
                 >
                   Contact Us
                 </a>
-                <a
-                  href="https://maps.google.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center px-6 py-3 border-2 border-gray-300 hover:border-yellow-500 text-gray-700 hover:text-yellow-500 font-semibold rounded-lg transition-all duration-300"
-                >
-                  Get Directions
-                  <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                </a>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

@@ -8,7 +8,7 @@ interface AboutFounderProps {
 
 const AboutFounder: React.FC<AboutFounderProps> = ({ type }) => {
   const aboutContent = {
-    title: "About the Founder",
+    title: "All Overview",
     content: `Edeh Johnson Chinedu, founder and chairman of Meichin Mines Ltd, is a Nigerian miner, entrepreneur, and businessman with a strong passion for the solid minerals industry.
 
 Johnson's journey into mining began after returning from China, where he developed a deep interest in natural resources and trade. Upon his return, he pursued this passion by learning the craft of mining, starting with small-scale trading and exports to partners across Nigeria and abroad.

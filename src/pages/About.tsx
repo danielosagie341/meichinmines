@@ -51,7 +51,7 @@ const About: React.FC = () => {
                   </h2>
                   
                   <div className="space-y-6">
-                    <p className="text-lg md:text-xl leading-relaxed text-gray-300">
+                    <p className="text-lg md:text-xl font-bold leading-relaxed text-gray-300">
                       {slide.content.description}
                     </p>
                     

@@ -19,7 +19,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ defaultServiceId }) => {
       image: minningAndTrading,
       content: {
         heading: 'Mining & Trading',
-        description: 'Our focus is to provide a superior service of tin, lead, zinc, fluorite, lithium, zircon supply from Nigeria to the world',
+        description: 'Our focus is to provide a superior service of tin, lead, zinc, fluorite, lithium, zircon supply from Nigeria to the world.',
         details: 'We produce all our minerals from owned mines and beneficiate the products into concentrates or crushed ores, the lead , zinc and zircon ores, are delivered to our own secured warehouses, where they are crushed according to the customer\'s requirements and prepared for delivery.'
       }
     },
@@ -29,8 +29,8 @@ const AboutSection: React.FC<AboutSectionProps> = ({ defaultServiceId }) => {
       image: logistics,
       content: {
         heading: 'Logistics',
-        description: 'From our experience with Nigerian logistics and the challenges it brings, we have become experts in the timely and consistent delivery of the raw materials and concentrates that global green energy and sustainable growth relies on.',
-        details: 'We ship our products from our mine sites and warehouses to Nigerian ports and have an exclusive freight forwarder that handles all of our goods and customs formalities at port. We securitize each individual truck that transports all of the goods from our warehouse to the port. Since our conception, we have delivered hundreds of thousands of tons to port safely and securely.'
+        description: 'From our experience with Nigerian logistics and the challenges it brings, we have become experts in the timely and consistent delivery of the raw materials and concentrates that global green energy and sustainable growth relies on. We ship our products from our mine sites and warehouses to Nigerian ports and have an exclusive freight forwarder that handles all of our goods and customs formalities at port. We securitize each individual truck that transports all of the goods from our warehouse to the port. Since our conception, we have delivered hundreds of thousands of tons to port safely and securely.',
+        details: ''
       }
     },
     {
@@ -113,16 +113,12 @@ const AboutSection: React.FC<AboutSectionProps> = ({ defaultServiceId }) => {
 
                 {/* Right side - Content */}
                 <div className="order-1 lg:order-2 text-white">
-                  <h2 className="text-4xl md:text-5xl font-bold mb-8">
-                    {slide.content.heading}
-                  </h2>
-                  
                   <div className="space-y-6">
-                    <p className="text-lg md:text-xl leading-relaxed text-gray-300">
+                    <p className="text-xl md:text-2xl leading-relaxed text-white">
                       {slide.content.description}
                     </p>
                     
-                    <p className="text-base md:text-lg leading-relaxed text-gray-400">
+                    <p className="text-xl md:text-2xl leading-relaxed text-white">
                       {slide.content.details}
                     </p>
                   </div>
@@ -134,7 +130,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ defaultServiceId }) => {
       </div>
 
       {/* Navigation Arrows */}
-      <div className='absolute top-32 flex left-[45%] w-full'>
+      <div className='absolute top-8 flex left-[45%] w-full'>
         <button
           onClick={prevSlide}
           className=" transform -translate-y-1/2 z-30 w-14 mr-5 h-14 bg-white hover:bg-black bg-opacity-50 hover:bg-opacity-70 rounded-full flex items-center justify-center transition-all duration-300 group"
@@ -169,8 +165,8 @@ const AboutSection: React.FC<AboutSectionProps> = ({ defaultServiceId }) => {
       </div>
 
       {/* Slide Title Overlay */}
-      <div className="absolute top-8 left-8 z-30">
-        <h3 className="text-2xl md:text-3xl font-bold text-white">
+      <div className="absolute lg:top-32 top-24 left-8 z-30">
+        <h3 className="text-4xl font-bold text-white">
           {slides[currentSlide].content.heading}
         </h3>
       </div>

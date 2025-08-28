@@ -4,7 +4,7 @@ import partialLogo from '../assets/images/partialLogo.svg';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-black text-white">
+    <footer id='footer' className="bg-black text-white">
       <div className="container mx-auto px-6 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
           {/* Logo and Tagline */}

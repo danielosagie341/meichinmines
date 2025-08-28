@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import addressMarker from '../assets/images/addressMarker.svg';
 import telephone from '../assets/images/telephone.svg';
 import mail from '../assets/images/mail.svg';
@@ -23,6 +24,7 @@ const GetInTouchSection: React.FC = () => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | null>(null);
 
   const contactInfo: ContactInfo[] = [
     {
@@ -54,15 +56,38 @@ const GetInTouchSection: React.FC = () => {
     }));
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    // Reset form
-    setFormData({ name: '', email: '', message: '' });
-    setIsSubmitting(false);
+    setSubmitStatus(null);
+
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !publicKey) {
+      console.error("EmailJS environment variables are not set.");
+      setSubmitStatus('error');
+      setIsSubmitting(false);
+      return;
+    }
+
+    const templateParams = {
+      from_name: formData.name,
+      reply_to: formData.email,
+      message: formData.message,
+    };
+
+    try {
+      await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      setSubmitStatus('success');
+      setFormData({ name: '', email: '', message: '' });
+    } catch (error) {
+      console.error('Failed to send email:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -120,7 +145,7 @@ const GetInTouchSection: React.FC = () => {
             {/* Background decoration */}
             <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-yellow-400/10 to-yellow-500/10 rounded-full transform translate-x-16 -translate-y-16"></div>
             
-            <div className="relative z-10">
+            <form onSubmit={handleSubmit} className="relative z-10">
               <div className="flex items-center justify-between mb-8">
                 <h3 className="text-3xl sm:text-4xl text-yellow-500">
                   Send a Message
@@ -138,6 +163,7 @@ const GetInTouchSection: React.FC = () => {
                     value={formData.name}
                     onChange={handleInputChange}
                     placeholder="Name"
+                    required
                     className="w-full px-4 py-4 text-gray-900 placeholder-gray-400 border-0 border-b-2 border-gray-200 bg-transparent focus:border-yellow-500 focus:outline-none transition-colors duration-300 text-base sm:text-lg"
                   />
                 </div>
@@ -149,6 +175,7 @@ const GetInTouchSection: React.FC = () => {
                     value={formData.email}
                     onChange={handleInputChange}
                     placeholder="Email"
+                    required
                     className="w-full px-4 py-4 text-gray-900 placeholder-gray-400 border-0 border-b-2 border-gray-200 bg-transparent focus:border-yellow-500 focus:outline-none transition-colors duration-300 text-base sm:text-lg"
                   />
                 </div>
@@ -160,13 +187,14 @@ const GetInTouchSection: React.FC = () => {
                     onChange={handleInputChange}
                     placeholder="Message"
                     rows={4}
+                    required
                     className="w-full px-4 py-4 text-gray-900 placeholder-gray-400 border-0 border-b-2 border-gray-200 bg-transparent focus:border-yellow-500 focus:outline-none transition-colors duration-300 resize-none text-base sm:text-lg"
                   />
                 </div>
 
                 <div className="pt-4">
                   <button
-                    onClick={handleSubmit}
+                    type="submit"
                     disabled={isSubmitting}
                     className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-yellow-400 to-yellow-500 text-white font-semibold rounded-full hover:from-yellow-500 hover:to-yellow-600 focus:outline-none focus:ring-4 focus:ring-yellow-400/30 transition-all duration-300 transform hover:scale-105 hover:shadow-lg disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none text-base sm:text-lg min-w-[140px] flex items-center justify-center"
                   >
@@ -180,8 +208,14 @@ const GetInTouchSection: React.FC = () => {
                     )}
                   </button>
                 </div>
+                {submitStatus === 'success' && (
+                  <p className="text-green-600 mt-4">Message sent successfully!</p>
+                )}
+                {submitStatus === 'error' && (
+                  <p className="text-red-600 mt-4">Failed to send message. Please try again later.</p>
+                )}
               </div>
-            </div>
+            </form>
           </div>
         </div>
       </div>

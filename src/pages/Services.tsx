@@ -1,7 +1,7 @@
 import React from 'react';
-import minningAndTrading from '../assets/images/minningAndTrading.svg';
-import ecologicalSafety from '../assets/images/ecologicalSafety.svg';
-import logistics from '../assets/images/logistics.svg';
+import minningAndTrading from '../assets/images/minningAndTradingOne.svg';
+import ecologicalSafety from '../assets/images/ecologicalSafetyOne.svg';
+import logistics from '../assets/images/logisticsOne.svg';
 import serviceBackgroundImage from '../assets/images/serviceBackgroundImage.svg';
 
 const Services: React.FC = () => {

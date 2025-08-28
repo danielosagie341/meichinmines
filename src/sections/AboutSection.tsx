@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import minningAndTrading from '../assets/images/minningAndTrading.svg';
-import logistics from '../assets/images/logistics.svg';
-import ecologicalSafety from '../assets/images/ecologicalSafety.svg';
+import minningAndTrading from '../assets/images/minningAndTradingOne.svg';
+import logistics from '../assets/images/logisticsOne.svg';
+import ecologicalSafety from '../assets/images/ecologicalSafetyOne.svg';
 
 interface AboutSectionProps {
   defaultServiceId?: string;

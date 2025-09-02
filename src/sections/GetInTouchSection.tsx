@@ -44,7 +44,7 @@ const GetInTouchSection: React.FC = () => {
     {
       icon: mail,
       title: 'Email',
-      content: ['Meichinofficial@gmail.com']
+      content: ['info@meichinmines.com']
     }
   ];
 

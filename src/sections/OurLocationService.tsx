@@ -81,10 +81,10 @@ const OurLocationSection: React.FC = () => {
                   <div>
                     <h4 className="font-semibold text-gray-800 mb-2">Email</h4>
                     <a 
-                      href="mailto:Meichinofficial@gmail.com" 
+                      href="mailto:info@meichinmines.com" 
                       className="text-gray-600 hover:text-yellow-500 transition-colors duration-300"
                     >
-                      Meichinofficial@gmail.com
+                      info@meichinmines.com
                     </a>
                   </div>
                 </div>

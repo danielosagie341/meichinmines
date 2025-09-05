@@ -1,10 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import minningAndTrading from '../assets/images/minningAndTradingOne.svg';
 import ecologicalSafety from '../assets/images/ecologicalSafetyOne.svg';
 import logistics from '../assets/images/logisticsOne.svg';
 import serviceBackgroundImage from '../assets/images/serviceBackgroundImage.svg';
 
 const Services: React.FC = () => {
+  const [activeSection, setActiveSection] = useState<string>('community');
+
+  const handleSectionClick = (sectionId: string) => {
+    setActiveSection(sectionId);
+  };
+
+  const sections = [
+    {
+      id: 'community',
+      title: 'Community',
+      content: 'We develop and maintain strong community and stakeholder relationships as part of our social license to operate and according to Nigeria Solid minerals law act.'
+    },
+    {
+      id: 'indigenous-engagement',
+      title: 'Indigenous Engagement',
+      content: 'We work closely with Indigenous communities and Native Title groups to increase Indigenous engagement and participation in the regions where we operate.'
+    },
+    {
+      id: 'social-investment',
+      title: 'Social Investment',
+      content: "We're making a positive impact in the local communities where we operate through contributions that generate value for society and demonstrate our corporate social responsibility."
+    }
+  ];
+
+  const activeContent = sections.find(s => s.id === activeSection);
+
   const slides = [
     {
       type: 'mining',
@@ -13,7 +39,7 @@ const Services: React.FC = () => {
       content: {
         heading: 'Mining & Trading',
         description: 'Our focus is to provide a superior service of tin, lead, zinc, fluorite, lithium, zircon supply from Nigeria to the world',
-        details: 'We produce all our minerals from owned mines and beneficiate the products into concentrates or crushed ores, the lead , zinc and zircon ores, are delivered to our own secured warehouses, where they are crushed according to the customer’s requirements and prepared for delivery.'
+        details: 'We produce all our minerals from owned mines and beneficiate the products into concentrates or crushed ores, the lead , zinc and zircon ores, are delivered to our own secured warehouses, where they are crushed according to the customerâ€™s requirements and preparedÂ forÂ delivery.'
       }
     },
     {
@@ -31,7 +57,7 @@ const Services: React.FC = () => {
       title: 'Ecological Safety',
       image: ecologicalSafety,
       content: {
-        heading: 'Ecological Safety',
+        heading: 'Environmental Safety & Governance',
         description: 'Integrity is our core value, and we only mine from our fully licensed and conflict free mines via mechanical mining methods. We have a strict safety enforcement policy and the vast majority of our employees are hired from the local communities where our mines are situated.',
         details: 'Our Code of Conduct prohibits child labour, conflict minerals, bribery & corruption, modern slavery, and focuses on how we can protect the environment in our natural resources extraction industry. We adhere to all Nigerian laws in terms of resource extraction and trading and are working closely with the Ministry of Mines & Steel Development to further improve the domestic framework.'
       }
@@ -96,7 +122,56 @@ const Services: React.FC = () => {
             );
           })}
         </div>
+
+        {/* Interactive Community Engagement Section */}
+        <div className="container mx-auto px-6 py-16">
+          <div className="bg-white rounded-lg shadow-lg overflow-hidden lg:p-20">
+            {/* Section Headers */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-0">
+              {sections.map((section, index) => (
+                <div key={section.id} className="relative">
+                  {/* Yellow bar that expands on active */}
+                  <div 
+                    className={`
+                      absolute top-0 left-0 right-0 bg-yellow-500 mx-5 lg:mx-10
+                      transition-all duration-500 ease-in-out z-10
+                      ${activeSection === section.id ? 'h-full' : 'h-1'}
+                    `}
+                  ></div>
+                  
+                  {/* Header */}
+                  <div 
+                    className={`
+                      cursor-pointer relative z-20 p-6 py-10 transition-colors duration-500 ease-in-out
+                      ${activeSection === section.id 
+                        ? 'text-white' 
+                        : 'text-black '
+                      }
+                    `}
+                    onClick={() => handleSectionClick(section.id)}
+                  >
+                    <h3 className="text-xl md:text-2xl font-bold text-center">
+                      {section.title}
+                    </h3>
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            {/* Content Area - Fixed Height */}
+            <div className="bg-white p-8 md:p-12 min-h-[300px] md:min-h-[400px] flex items-center justify-center">
+              <div className="max-w-4xl mx-auto">
+                <p className="text-base md:text-lg lg:text-xl font-bold leading-relaxed text-center text-gray-800 transition-all duration-500 ease-in-out">
+                  {activeContent?.content}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+
+      {/* Additional spacing at bottom */}
+      <div className="pb-16"></div>
     </div>
   );
 };

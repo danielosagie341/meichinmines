@@ -38,7 +38,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ defaultServiceId }) => {
       title: 'Ecological Safety',
       image: ecologicalSafety,
       content: {
-        heading: 'Ecological Safety',
+        heading: 'Environmental Safety & Governance',
         description: 'Integrity is our core value, and we only mine from our fully licensed and conflict free mines via mechanical mining methods. We have a strict safety enforcement policy and the vast majority of our employees are hired from the local communities where our mines are situated.',
         details: 'Our Code of Conduct prohibits child labour, conflict minerals, bribery & corruption, modern slavery, and focuses on how we can protect the environment in our natural resources extraction industry. We adhere to all Nigerian laws in terms of resource extraction and trading and are working closely with the Ministry of Mines & Steel Development to further improve the domestic framework.'
       }

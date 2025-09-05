@@ -22,7 +22,7 @@ const OurServicesSection: React.FC = () => {
     },
     {
       id: 'ecological',
-      title: 'Environmental Safety',
+      title: 'Environmental Safety & Governance',
       image: ecologicalSafety,
       description: 'Environmental protection and sustainable mining practices',
     }

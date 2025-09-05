@@ -11,7 +11,7 @@ interface Section {
 }
 
 const About: React.FC = () => {
-  const [activeSection, setActiveSection] = useState<string | null>(null);
+  const [activeSection, setActiveSection] = useState<string | null>('vision-mission');
 
   const slides = [
     {
@@ -32,27 +32,29 @@ const About: React.FC = () => {
       title: 'Our Vision & Mission',
       subtitle: '',
       content: 'To become the leading mining and metal company in Africa providing top notch product and services to the world and engage in transparent and inclusive mining operations geared towards shared prosperity by building a well structured mining ecosystem that attracts direct foreign investment to the mining sector.',
-      bgColor: 'bg-black'
+      bgColor: 'bg-yellow-500'
     },
     {
       id: 'focus',
       title: 'Our Focus',
       subtitle: '',
       content: 'Our strategic focus is driven by our desire to deliver enduring value and certainty for our local and international partners, adding to the true & reliable value chains by offering the professional service in the mining mineral and energy sectors.',
-      bgColor: 'bg-black'
+      bgColor: 'bg-yellow-500'
     },
     {
       id: 'core-value',
       title: 'Core Value',
       subtitle: '',
       content: 'Integrity, Transparency, learning and Team Work is core to any business. As an organization, we become a steward of the whole industry and we should take that responsibility seriously. As a mining firm, we can be judged by the misdeeds of really bad Mining companies within our region, but at MEICHIN MINES, our goals is to provide values, educate our clients and build long-term business relationships. We are focused on being completely transparent.',
-      bgColor: 'bg-black'
+      bgColor: 'bg-yellow-500'
     }
   ];
 
   const handleSectionClick = (sectionId: string) => {
-    setActiveSection(activeSection === sectionId ? null : sectionId);
+    setActiveSection(sectionId);
   };
+
+  const activeContent = sections.find(s => s.id === activeSection);
 
   return (
     <div 
@@ -104,59 +106,48 @@ const About: React.FC = () => {
       ))}
 
       {/* Interactive Sections */}
-      <div className="container mx-auto px-6 py-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {sections.map((section) => (
-            <div key={section.id} className="relative overflow-hidden">
-              {/* Section Header */}
-              <div 
-                className={`
-                  cursor-pointer transition-all duration-500 ease-in-out h-44
-                  ${activeSection === section.id 
-                    ? `${section.bgColor} text-white` 
-                    : 'bg-black text-white hover:bg-gray-900'
-                  }
-                  p-6 rounded-t-lg shadow-lg
-                `}
-                onClick={() => handleSectionClick(section.id)}
-              >
-                <div className="text-center">
-                  <div className="w-12 h-1 bg-yellow-600 mx-auto mb-4"></div>
-                  <h3 className="text-2xl md:text-3xl font-bold">
+      <div className="container mx-auto px-6 py-16">
+        <div className="bg-white rounded-lg shadow-lg overflow-hidden lg:p-20">
+          {/* Section Headers */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-0">
+            {sections.map((section, index) => (
+              <div key={section.id} className="relative">
+                {/* Yellow bar that expands on active */}
+                <div 
+                  className={`
+                    absolute top-0 left-0 right-0 bg-yellow-500 mx-5 lg:mx-10
+                    transition-all duration-500 ease-in-out z-10
+                    ${activeSection === section.id ? 'h-full' : 'h-1'}
+                  `}
+                ></div>
+                
+                {/* Header */}
+                <div 
+                  className={`
+                    cursor-pointer relative z-20 p-6  py-10 transition-colors duration-500 ease-in-out
+                    ${activeSection === section.id 
+                      ? 'text-white' 
+                      : 'text-black '
+                    }
+                  `}
+                  onClick={() => handleSectionClick(section.id)}
+                >
+                  <h3 className="text-xl md:text-2xl font-bold text-center">
                     {section.title}
                   </h3>
-                  {section.subtitle && (
-                    <h4 className="text-xl md:text-2xl font-semibold mt-2">
-                      {section.subtitle}
-                    </h4>
-                  )}
                 </div>
               </div>
-
-              {/* Expandable Content */}
-              <div 
-                className={`
-                  transition-all duration-500 ease-in-out overflow-hidden
-                  ${activeSection === section.id 
-                    ? 'max-h-96 opacity-100' 
-                    : 'max-h-0 opacity-0'
-                  }
-                  ${section.bgColor} text-white rounded-b-lg shadow-lg
-                `}
-              >
-                <div className="p-6">
-                  <p className="text-base md:text-lg leading-relaxed">
-                    {section.content}
-                  </p>
-                </div>
-              </div>
-
-              {/* Static bottom section when not active */}
-              {activeSection !== section.id && (
-                <div className="h-2 bg-gray-200 rounded-b-lg shadow-lg"></div>
-              )}
+            ))}
+          </div>
+          
+          {/* Content Area - Fixed Height */}
+          <div className="bg-white p-8 md:p-12 min-h-[300px] md:min-h-[400px] flex items-center justify-center">
+            <div className="max-w-4xl mx-auto">
+              <p className="text-base md:text-lg lg:text-xl leading-relaxed text-center text-gray-800 transition-all duration-500 ease-in-out">
+                {activeContent?.content}
+              </p>
             </div>
-          ))}
+          </div>
         </div>
       </div>
 

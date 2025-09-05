@@ -129,6 +129,8 @@ const Services: React.FC = () => {
             {/* Section Headers */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-0">
               {sections.map((section, index) => (
+                console.log(index),
+
                 <div key={section.id} className="relative">
                   {/* Yellow bar that expands on active */}
                   <div 

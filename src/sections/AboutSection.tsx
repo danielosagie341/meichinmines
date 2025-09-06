@@ -93,8 +93,15 @@ const AboutSection: React.FC<AboutSectionProps> = ({ defaultServiceId }) => {
         style={{ transform: `translateX(-${currentSlide * 100}%)` }}
       >
         {slides.map((slide, index) => (
-          <div key={index} className="w-full flex-shrink-0 min-h-screen flex items-center">
+          <div key={index} className="w-full flex-shrink-0 min-h-screen flex items-start lg:items-center">
             <div className="container mx-auto px-6 py-16">
+              {/* Slide Title Overlay */}
+              <div className=" z-30">
+                <h3 className="text-4xl font-bold text-white">
+                  {slide.content.heading}
+                </h3>
+              </div>
+
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 {/* Left side - Image */}
                 <div className="order-2 lg:order-1">
@@ -112,7 +119,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ defaultServiceId }) => {
                 </div>
 
                 {/* Right side - Content */}
-                <div className="order-1 lg:order-2 text-white">
+                <div className="order-2 text-white">
                   <div className="space-y-6">
                     <p className="text-xl md:text-2xl leading-relaxed text-white">
                       {slide.content.description}
@@ -130,7 +137,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ defaultServiceId }) => {
       </div>
 
       {/* Navigation Arrows */}
-      <div className='absolute top-8 flex left-[45%] w-full'>
+      <div className='absolute top-8 flex md:left-[45%] left-10 w-full'>
         <button
           onClick={prevSlide}
           className=" transform -translate-y-1/2 z-30 w-14 mr-5 h-14 bg-white hover:bg-black bg-opacity-50 hover:bg-opacity-70 rounded-full flex items-center justify-center transition-all duration-300 group"
@@ -164,12 +171,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ defaultServiceId }) => {
         ))}
       </div>
 
-      {/* Slide Title Overlay */}
-      <div className="absolute lg:top-32 top-24 left-8 z-30">
-        <h3 className="text-4xl font-bold text-white">
-          {slides[currentSlide].content.heading}
-        </h3>
-      </div>
+      
     </section>
   );
 };

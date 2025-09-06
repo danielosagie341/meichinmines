@@ -36,7 +36,7 @@ Edeh Johnson Chinedu attended Enugu state university of science and technology a
     >
       
       <div className="relative z-10 min-h-screen flex items-center">
-        <div className="container mx-auto px-16 lg:px-24 xl:px-32 py-20">
+        <div className="container mx-auto px-5 lg:px-24 xl:px-32 py-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-center min-h-[600px]">
             {/* Content Side */}
             <div className="text-white pr-8 lg:pr-16">
